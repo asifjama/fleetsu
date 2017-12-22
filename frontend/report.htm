@@ -1,0 +1,52 @@
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Device Reporting Management</h1>
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<div class="row">
+	<div class="col-lg-12">                   
+		<!-- /.panel -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-bar-chart-o fa-fw"></i> Device Reporting                          
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-lg-12" ng-controller="myReport">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover table-striped">
+								<thead>
+									<tr>
+										<th width="20%">S.No</th>
+										<th width="20%">Device ID</th>
+										<th width="20%">Device Label</th>
+										<th width="20%">Last Reported Date</th>
+										<th width="20%">Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="report in report_list">
+										<td>{{$index + 1}}</td>
+										<td><a href="#!report/{{ report.device_id }}">{{ report.device_id }}</a></td>
+										<td>{{ report.device_name}}</td>
+										<td>{{ report.last_report_on | date:'medium'}}</td>
+										<td class="status-text" ng-class="{'offline': report.device_status == 'OFFLINE' , 'online': report.device_status == 'OK'} ">
+											{{ report.device_status}}
+										</td>
+									</tr>
+									<tr ng-hide="report_list.length">
+										<td colspan="5" align="center">
+											No data found
+										</td>
+									</tr>									
+								</tbody>
+							</table>
+						</div>						
+					</div>				 
+				</div>				
+			</div>			
+		</div>		
+	</div>	
+</div>
